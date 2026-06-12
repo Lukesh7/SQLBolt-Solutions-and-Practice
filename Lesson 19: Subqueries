@@ -1,0 +1,32 @@
+Q1. Find all orders whose amount is greater than the average order amount.
+
+SELECT Amount FROM Orders
+WHERE Amount > ( 
+	SELECT AVG(Amount) FROM Orders) ;
+
+Q2. Find customers who live in the same city as Alice.
+
+SELECT Name FROM Customers
+WHERE City = (
+	SELECT City FROM Customers 
+	WHERE Name = 'Alice') ;
+
+Q3. Find customers whose CustomerID appears in the Orders table.
+(Hint: Use IN with a subquery.)
+
+SELECT Name FROM Customers
+WHERE CustomerID IN (
+	SELECT CustomerID FROM Orders);
+
+Q4. Find orders whose amount is greater than the highest order amount placed by CustomerID = 2.
+
+SELECT * FROM Orders
+WHERE Amount > (
+	SELECT MAX(Amount) FROM Orders
+	WHERE CustomerID = 2);
+
+Q5. Find customers who have never placed an order.
+
+SELECT * FROM Customers 
+WHERE CustomerID NOT IN (
+	SELECT CustomerID FROM Orders);
