@@ -1,0 +1,40 @@
+Exercises
+Q1. Find products whose price is greater than the average price of their category.
+
+SELECT ProductName, Price, Category FROM Products p1
+WHERE Price > (
+	SELECT AVG(Price) FROM Products p2 
+	WHERE p1.category = p2.category
+);
+
+Q2. Find products whose price is the highest in their category.
+
+SELECT *  FROM Products p1
+WHERE Price = (
+	SELECT MAX(Price) FROM Products p2
+	WHERE p1.Category = p2.Category 
+);
+
+Q3. Find products whose price is lower than the average price of their category.
+
+SELECT * FROM Products p1 
+WHERE Price < (
+	SELECT AVG(Price) FROM Products p2
+	WHERE p1.Category = p2.Category
+);
+
+Q4. Find products whose price equals the minimum price in their category.
+
+SELECT * FROM Products p1 
+WHERE Price = (
+	SELECT MIN(Price) FROM Products p2
+	WHERE p1.Category = p2.Category
+);
+
+Q5. Find products whose price is greater than every other product in their category.
+
+SELECT * FROM Products p1 
+WHERE Price > (
+	SELECT MAX(Price) FROM Products p2
+	WHERE p1.Category = p2.Category
+);
