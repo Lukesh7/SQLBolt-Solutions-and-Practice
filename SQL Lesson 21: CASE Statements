@@ -1,0 +1,82 @@
+Employees
+EmployeeID	Name	Department	Salary
+1		John	Sales		40000
+2		Sarah	HR		50000
+3		Mike	IT		70000
+4		Emma	IT		60000
+5		David	Sales		45000
+
+Q1.Classify employees as:
+
+High: Salary >= 60000
+Low: Salary < 60000
+Return: | Name | Salary | SalaryLevel |
+
+SELECT Name, Salary,
+  CASE 
+      WHEN Salary >= 60000 THEN 'High' 
+      ELSE 'Low' 
+  END AS 'SalaryLevel' 
+FROM Employees ;
+
+Q2.Classify employees as:
+
+High: Salary >= 60000
+Medium: Salary >= 45000 and < 60000
+Low: Salary < 45000
+Return: | Name | Salary | SalaryLevel |
+
+SELECT Name, Salary,
+    CASE 
+        WHEN Salary >= 60000 THEN 'High'
+        WHEN Salary >= 45000 AND Salary < 60000 THEN 'Medium'
+        ELSE 'Low'
+    END AS 'SalaryLevel'
+FROM Employees;
+
+Q3.Classify employees by Department:
+
+IT → Tech
+HR → Support
+Sales → Revenue
+Others → Other
+Return: | Name | Department | DepartmentType |
+
+SELECT Name, Department, 
+    CASE  
+        WHEN Department = 'IT' THEN 'Tech'
+        WHEN Department = 'HR' THEN 'Support'
+        WHEN Department = 'Sales' THEN 'Revenue'
+        ELSE 'Others'
+    END AS 'DepartmentType' 
+FROM Employees;
+
+Q4.Classify employees as:
+
+Senior: Salary >= 65000
+Mid: Salary >= 50000 and < 65000
+Junior: Salary < 50000
+Return: | Name | Salary | EmployeeLevel |
+
+SELECT Name, Salary,
+    CASE
+        WHEN Salary >= 65000 THEN 'Senior'
+        WHEN Salary >= 50000 AND Salary < 65000 THEN 'Mid'
+        ELSE 'Junior'
+    END AS 'EmployeeLevel'
+FROM Employees ;
+
+Q5.Classify employees as:
+
+Excellent: Salary >= 70000
+Good: Salary >= 50000 and < 70000
+Average: Salary < 50000
+Return: | Name | Salary | Performance |
+
+SELECT Name, Salary, 
+    CASE 
+        WHEN Salary >= 70000 THEN 'Excellent'
+        WHEN Salary >= 50000 AND Salary < 70000 THEN 'Good'
+        ELSE  'Average'
+    END AS 'Performance'
+FROM Employees;
