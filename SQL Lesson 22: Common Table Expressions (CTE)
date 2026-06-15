@@ -1,0 +1,56 @@
+Practice Questions
+Q1. Create a CTE that selects all employees with Salary > 45000,
+    then return all rows from it.
+
+WITH HighEarners AS (
+   SELECT * FROM Employees 
+   WHERE Salary > 45000
+)
+SELECT * FROM HighEarners;
+
+Q2. Create a CTE that calculates average salary, 
+    then find employees earning above average.
+
+WITH AvgEarners AS (
+   SELECT AVG(Salary) AS AvgSal
+   FROM Employees )
+SELECT * FROM Employees, AvgEarners 
+WHERE Salary > AvgSal ;
+
+Q3. Create a CTE for IT department employees and display them.
+
+WITH ITemp  AS (
+   SELECT * FROM Employees 
+   WHERE Department = 'IT')
+SELECT * FROM ITemp ;
+
+Q4. Create two CTEs:
+
+High Salary (>60000)
+Low Salary (<=60000)
+Then show only High Salary employees.
+
+WITH HighEarners AS (
+         SELECT * FROM Employees WHERE Salary > 60000
+), 
+LowEarners AS (
+        SELECT * FROM Employees WHERE Salary <= 60000
+) 
+SELECT * FROM HighEarners ;
+
+Q5. Create a CTE that adds a new column SalaryLevel:
+
+High >= 60000
+Medium 45000–59999
+Low < 45000
+Then return all rows.
+
+WITH SalaryLevel AS (
+SELECT EmployeeID, Name, Department, Salary, 
+CASE 
+    WHEN Salary >= 60000 THEN 'High' 
+    WHEN Salary >= 45000 THEN 'Medium' 
+    ELSE 'Low' 
+END AS SalaryLevel FROM Employees) 
+
+SELECT * FROM SalaryLevel ;
