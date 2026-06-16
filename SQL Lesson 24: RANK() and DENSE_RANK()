@@ -1,0 +1,34 @@
+Practice Questions
+
+Q1. Apply RANK() based on Salary DESC.
+   Return all columns + Rank.
+ 
+ SELECT *,
+      RANK() OVER (ORDER BY Salary DESC) AS RankVal 
+ FROM Employees;
+
+Q2. Apply DENSE_RANK() based on Salary DESC.
+   Return all columns + DenseRank.
+
+  SELECT *, 
+       DENSE_RANK() OVER (ORDER BY Salary DESC) AS DenseRankVal 
+  FROM Employees;
+
+Q3. Apply RANK() within each Department based on Salary DESC.
+
+  SELECT *, 
+       RANK() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RankVal 
+  FROM Employees ;
+
+Q4. Apply DENSE_RANK() within each Department based on Salary ASC.
+
+  SELECT *,
+         DENSE_RANK() OVER (PARTITION BY Department ORDER BY Salary ASC) AS DenseRankVal
+  FROM Employees ; 
+
+Q5. Show both RANK() and DENSE_RANK() together ordered by Salary DESC.
+
+  SELECT *, 
+       RANK() OVER (ORDER BY Salary DESC) AS RankVal, 
+       DENSE_RANK() OVER (ORDER BY Salary DESC) AS DenseRankVal 
+  FROM Employees ;
