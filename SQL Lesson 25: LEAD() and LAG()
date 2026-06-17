@@ -1,0 +1,31 @@
+Practice Questions
+Q1. Show all columns plus the previous Amount using LAG().
+
+   SELECT *, 
+         LAG(Amount) OVER (ORDER BY SaleID) AS PrevAmount 
+   FROM Sales;
+
+Q2. Show all columns plus the next Amount using LEAD().
+
+   SELECT *, 
+         LEAD(Amount) OVER (ORDER BY SaleID) AS NextAmount 
+   FROM Sales;
+
+Q3. Show both previous and next Amount in the same query.
+
+   SELECT *, 
+         LAG(Amount) OVER (ORDER BY SaleID), 
+         LEAD(Amount) OVER (ORDER BY SaleID) 
+   FROM Sales;
+
+Q4. Show previous Month using LAG(Month).
+
+   SELECT *, 
+         LAG(Month) OVER (ORDER BY SaleID) AS PrevMonth 
+   FROM Sales;
+
+Q5. Show next Month using LEAD(Month).
+
+   SELECT *, 
+         LEAD(Month) OVER (ORDER BY SaleID) AS NextMonth 
+   FROM Sales;
