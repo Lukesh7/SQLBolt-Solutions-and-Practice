@@ -1,0 +1,38 @@
+Practice Questions
+Q1. Find employees whose Salary is greater than the average Salary.
+   
+   SELECT * FROM Employees 
+   WHERE Salary > (
+	SELECT AVG(Salary) 
+        FROM Employees) ;
+
+Q2. Find employees whose Salary equals the highest Salary.
+(Hint: use MAX())
+   
+   SELECT * FROM Employees 
+   WHERE Salary = (
+  	SELECT MAX(Salary) 
+	FROM Employees);
+
+Q3. Find employees whose Salary is less than the average Salary.
+
+   SELECT * FROM Employees 
+   WHERE Salary < (
+	SELECT AVG(Salary) 
+	FROM Employees);
+
+Q4. Find employees whose Salary is equal to the lowest Salary.
+(Hint: use MIN())
+   
+   SELECT * FROM Employees 
+   WHERE Salary = (
+	SELECT MIN(Salary) 
+	FROM Employees);
+
+Q5. Find employees whose Salary is greater than the Salary of John.
+(Hint: subquery returns John's salary)
+
+   SELECT * FROM Employees 
+   WHERE Salary > (
+	SELECT Salary FROM Employees 
+	WHERE Name = 'John');
