@@ -1,0 +1,29 @@
+Q1.Show the number of employees in each department.
+Use COUNT(*) and GROUP BY.
+
+SELECT Department, COUNT(Name) AS EmployeeCount
+FROM Employees
+GROUP BY Department
+
+Q2.Show the average salary for each department.
+Use AVG() and GROUP BY.
+
+SELECT Department, AVG(Salary) AS AverageSalary
+FROM Employees
+GROUP BY Department;
+
+Q3.Show the highest salary in each department.
+Use MAX() and GROUP BY.
+
+SELECT Department, MAX(Salary) AS HighestSalary
+FROM Employees
+GROUP BY Department;
+
+Q4.Find departments where:
+Total salary is greater than 80000
+Use:GROUP BY, SUM, HAVING.
+
+SELECT Department
+FROM Employees
+GROUP BY Department
+HAVING SUM(Salary) > 80000;
