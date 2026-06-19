@@ -1,0 +1,43 @@
+Q1. Find employees whose salary is greater than the 
+    average salary of their own department.
+
+   SELECT * FROM Employees e1 
+   WHERE Salary > (
+ 	SELECT AVG(Salary) FROM Employees e2 
+        WHERE e1.Department = e2.Department
+        );
+
+Q2. Find employees who earn the highest salary in their own department.
+    
+   SELECT * FROM Employees e1 
+   WHERE Salary = (
+	SELECT MAX(Salary) FROM Employees e2 
+	WHERE e1.Department = e2.Department
+	);
+
+Q3. Find employees who earn the lowest salary in their own department.
+
+   SELECT * FROM Employees e1 
+   WHERE Salary = (
+   	SELECT MIN(Salary) FROM Employees e2 
+	WHERE e1.Department = e2.Department
+	);
+
+Q4. Find employees who have at least one colleague in the same department.
+    
+   SELECT * FROM Employees e1 
+   WHERE EXISTS (
+	SELECT 1 FROM Employees e2 
+	WHERE e1.Department = e2.Department 
+		AND e1.EmployeeID <> e2.EmployeeID
+	);
+
+Q5. Find employees who work in a department where at least 
+    one employee earns more than 60000.
+
+   SELECT * FROM Employees e1 
+   WHERE EXISTS (
+	SELECT 1 FROM Employees e2 
+	WHERE Salary > 60000 
+		AND e1.Department = e2.Department
+	);
